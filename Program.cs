@@ -1,25 +1,45 @@
-﻿using System.Runtime.InteropServices;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using System.Runtime.InteropServices;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+    }
+}
 
 internal class EditorGrafico: IGrafico
 {
     string IGrafico.dibujar(int x, int y)
     {
-        if (x > 800 || y > 600){
-            throw new Exception("Te has salido de la pantalla (800x600)");
+        try
+        {
+            Console.WriteLine("Introduzca el valor de x: ");
+            x = int.Parse(Console.ReadLine()); // Primera coordenada a introducir
+            Console.WriteLine("Introduzca el valor de y: ");
+            y = int.Parse(Console.ReadLine()); // Segunda coordenada a introducir
+            if (x > 800 || y > 600) // Cuando se salga de las coordenadas 800,600 provoco una excepcion
+            {
+                throw new Exception("Te has salido de la pantalla (800x600)");
+            }
         }
-
-        Console.Write(x.ToString(),y);
-
-        throw new NotImplementedException();
+        catch (FormatException)
+        {
+            Console.WriteLine("El formato del número no es válido.");
+        }
+        return "Gráfico dibujado con éxito, coordenadas: " + x.ToString() + y; // Mostramos las coordenadas correctas
     }
 
     public bool mover(int x, int y)
     {
-        if (x > 800 || y > 600)
+        try
         {
-            return false;
+            if (x > 800 || y > 600) { return false; }
+            else { return true; }
         }
-        throw new NotImplementedException();
+        catch { Console.WriteLine("Error"); }
+        return false;
     }
 }
 
