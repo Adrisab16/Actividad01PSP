@@ -14,7 +14,7 @@ internal class EditorGrafico: IGrafico
     string IGrafico.dibujar(int x, int y)
     {
         try
-        {
+        { 
             Console.WriteLine("Introduzca el valor de x: ");
             x = int.Parse(Console.ReadLine()); // Primera coordenada a introducir
             Console.WriteLine("Introduzca el valor de y: ");
@@ -35,10 +35,21 @@ internal class EditorGrafico: IGrafico
     {
         try
         {
+            Console.WriteLine("Introduzca el nuevo valor de x: ");
+            x = int.Parse(Console.ReadLine()); // Primera coordenada a introducir
+            Console.WriteLine("Introduzca el nuevo valor de y: ");
+            y = int.Parse(Console.ReadLine()); // Segunda coordenada a introducir
             if (x > 800 || y > 600) { return false; }
-            else { return true; }
+            else 
+            {
+                Console.WriteLine("Grafico movido con éxito, coordenadas: " + x.ToString() + y);
+                return true; 
+            }
         }
-        catch { Console.WriteLine("Error"); }
+        catch (FormatException)
+        {
+            Console.WriteLine("El formato del número no es válido.");
+        }
         return false;
     }
 }
