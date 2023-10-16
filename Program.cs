@@ -13,5 +13,6 @@ interface Igrafico{
 
 
 internal class Punto{
-
+    int x;
+    int y;
 }
